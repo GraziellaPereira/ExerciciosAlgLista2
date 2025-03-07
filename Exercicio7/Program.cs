@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,22 +19,28 @@ namespace Exercicio7
             string[] aluno = new string[n];
             double[] nota1 = new double[n];
             double[] nota2 = new double[n];
-            Console.WriteLine($"Alunos aprovados: {aluno[n]}");
+            double[] media = new double[n];
+            
             for (int i = 0; i < n; i++)
             {
                 string[] entrada = Console.ReadLine().Split();
                 aluno[i] = entrada[0];
-                nota1[i] = double.Parse(entrada[1]);
-                nota2[i] = double.Parse(entrada[2]);
+                nota1[i] = double.Parse(entrada[1], CultureInfo.InvariantCulture);
+                nota2[i] = double.Parse(entrada[2], CultureInfo.InvariantCulture);
 
-                media = ((nota1[i] + nota2[i]) / 2);
+                media[i] = ((nota1[i] + nota2[i]) / 2);
+
 
             }
-
-            if (media >= 6)
-            {
-                
+            Console.WriteLine("Alunos aprovados: ");
+            for (int i = 0; i < n; i++) {
+                if (media[i] >= 6)
+                {
+                    Console.WriteLine(aluno[i]);
+                }
             }
+
+           
 
             Console.ReadKey();
         }
